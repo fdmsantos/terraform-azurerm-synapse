@@ -12,13 +12,3 @@ variable "location" {
   description = "Specifies the Azure Region where the synapse Workspace should exist. Changing this forces a new resource to be created."
   type        = string
 }
-
-# variable "github_account_name" {
-#   description = "Specifies the Github Account name to configure Synapse Workspace."
-#   type = string
-# }
-#
-# variable "github_repository_name" {
-#   description = "Specifies the Github Repository name to configure Synapse Workspace."
-#   type = string
-# }

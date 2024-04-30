@@ -53,19 +53,6 @@ variable "aad_admin" {
   default = null
 }
 
-variable "add_storage_contributor_role" {
-  description = "If true, add Storage Contributor Role to Synapse Workspace identity."
-  type        = bool
-  default     = true
-}
-
-variable "storage_account_id" {
-  description = "Storage Account ID used by Synapse Workspace. Necessary if `add_storage_contributor_role` is true."
-  type        = string
-  default     = false
-}
-
-
 ######### Identity #########
 variable "identity_type" {
   description = "Specifies the type of Managed Service Identity that should be associated with this Logic App."
@@ -117,4 +104,27 @@ variable "github" {
     git_url         = optional(string)
   })
   default = null
+}
+
+
+######### Access Control #########
+variable "add_storage_contributor_role" {
+  description = "If true, add Storage Contributor Role to Synapse Workspace identity."
+  type        = bool
+  default     = true
+}
+
+variable "storage_account_id" {
+  description = "Storage Account ID used by Synapse Workspace. Necessary if `add_storage_contributor_role` is true."
+  type        = string
+  default     = false
+}
+
+variable "synapse_role_assignments" {
+  description = "Manages a Synapse Role Assignment."
+  type = list(object({
+    role_name    = string
+    principal_id = string
+  }))
+  default = []
 }
