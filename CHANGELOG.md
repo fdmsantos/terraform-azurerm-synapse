@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.1.1](https://github.com/fdmsantos/terraform-azurerm-synapse/compare/v1.1.0...v1.1.1) (2024-05-07)
+
+
+### Bug Fixes
+
+* Fix Synapse Role Assignment perpetual diff changes ([3a2c066](https://github.com/fdmsantos/terraform-azurerm-synapse/commit/3a2c066014ec6ab4ea5f436f54e308e9da1bcb11))
+
 ## [1.1.0](https://github.com/fdmsantos/terraform-azurerm-synapse/compare/v1.0.0...v1.1.0) (2024-04-30)
 
 
