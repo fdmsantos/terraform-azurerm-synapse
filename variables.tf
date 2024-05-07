@@ -123,8 +123,9 @@ variable "storage_account_id" {
 variable "synapse_role_assignments" {
   description = "Manages a Synapse Role Assignment."
   type = list(object({
-    role_name    = string
-    principal_id = string
+    role_name      = string
+    principal_id   = string
+    principal_type = optional(string, null)
   }))
   default = []
 }

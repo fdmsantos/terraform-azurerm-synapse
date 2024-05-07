@@ -59,6 +59,7 @@ resource "azurerm_synapse_role_assignment" "this" {
   synapse_workspace_id = azurerm_synapse_workspace.this.id
   role_name            = var.synapse_role_assignments[count.index].role_name
   principal_id         = var.synapse_role_assignments[count.index].principal_id
+  principal_type       = var.synapse_role_assignments[count.index].principal_type
 }
 ############################### Firewall Rules ###############################
 resource "azurerm_synapse_firewall_rule" "this" {
