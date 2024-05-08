@@ -129,3 +129,30 @@ variable "synapse_role_assignments" {
   }))
   default = []
 }
+
+######### Spark Pools #########
+variable "spark_pools" {
+  description = "Manages a Synapse Spark Poold."
+  type = map(object({
+    node_size_family                    = optional(string, "None")
+    node_size                           = optional(string, "Small")
+    node_count                          = optional(number, null)
+    cache_size                          = optional(number, null)
+    compute_isolation_enabled           = optional(bool, false)
+    dynamic_executor_allocation_enabled = optional(bool, false)
+    min_executors                       = optional(number, null)
+    max_executors                       = optional(number, null)
+    session_level_packages_enabled      = optional(bool, false)
+    spark_log_folder                    = optional(string, "/logs")
+    spark_events_folder                 = optional(string, "/events")
+    spark_version                       = optional(string, "3.4")
+    autoscale_max_node_count            = optional(number, null)
+    autoscale_min_node_count            = optional(number, null)
+    autopause_delay_in_minutes          = optional(number, null)
+    requirements_content                = optional(string, null)
+    requirements_filename               = optional(string, "requirements.txt")
+    spark_config_content                = optional(string, null)
+    spark_config_filename               = optional(string, "config.txt")
+  }))
+  default = {}
+}

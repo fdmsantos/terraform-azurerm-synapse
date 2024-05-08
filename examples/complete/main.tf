@@ -1,4 +1,4 @@
-data "azurerm_client_config" "current" {}
+#data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "this" {
   name     = "RG-${var.name}"
@@ -65,9 +65,28 @@ module "synapse" {
     branch_name     = "main"
     root_folder     = "/synapse"
   }
+  #   synapse_role_assignments = [{
+  #     role_name    = "Synapse Administrator"
+  #     principal_id = data.azurerm_client_config.current.object_id
+  #   }]
 
-  synapse_role_assignments = [{
-    role_name    = "Synapse Administrator"
-    principal_id = data.azurerm_client_config.current.object_id
-  }]
+  spark_pools = {
+    testpool : {
+      node_size_family : "MemoryOptimized"
+      node_size : "Small"
+      cache_size : 100
+      session_level_packages_enabled : true
+      spark_version : "3.3"
+      autoscale_min_node_count : 3
+      autoscale_max_node_count : 4
+      autopause_delay_in_minutes : 5
+      requirements_content : <<EOF
+appnope==0.1.0
+beautifulsoup4==4.6.3
+EOF
+      spark_config_content : <<EOF
+spark.shuffle.spill                true
+EOF
+    }
+  }
 }

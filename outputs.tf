@@ -18,3 +18,11 @@ output "identity" {
   description = "The Principal ID and Tenant ID for the Service Principal associated with the Managed Service Identity of this Synapse Workspace."
   value       = azurerm_synapse_workspace.this.identity
 }
+
+########## Spark Pools ##########
+output "spark_pools_id" {
+  description = "The Spark Pools ID."
+  value = {
+    for k, v in azurerm_synapse_spark_pool.this : k => v.id
+  }
+}

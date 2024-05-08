@@ -24,6 +24,13 @@ Dynamic Terraform Module to create Azure Synapse Workspace and all Related Resou
 |----------------|------------------------|
 | >= 1.x.x       | => 3.22                |
 
+## Supported Features
+
+- Synapse Workspace
+- Synapse Role Assignments
+- Synapse Firewall Rules
+- Spark Pools
+
 ## How to Use
 
 ### Basic
@@ -75,6 +82,7 @@ No modules.
 | [azurerm_synapse_firewall_rule.client_ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_firewall_rule) | resource |
 | [azurerm_synapse_firewall_rule.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_firewall_rule) | resource |
 | [azurerm_synapse_role_assignment.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_role_assignment) | resource |
+| [azurerm_synapse_spark_pool.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_spark_pool) | resource |
 | [azurerm_synapse_workspace.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_workspace) | resource |
 | [random_password.sql_password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
 | [http_http.client_ip](https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http) | data source |
@@ -97,6 +105,7 @@ No modules.
 | <a name="input_location"></a> [location](#input\_location) | Specifies the Azure Region where the synapse Workspace should exist. Changing this forces a new resource to be created. | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | Specifies the name which should be used for this synapse Workspace. Changing this forces a new resource to be created. | `string` | n/a | yes |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Specifies the name of the Resource Group where the synapse Workspace should exist. Changing this forces a new resource to be created. | `string` | n/a | yes |
+| <a name="input_spark_pools"></a> [spark\_pools](#input\_spark\_pools) | Manages a Synapse Spark Poold. | <pre>map(object({<br>    node_size_family                    = optional(string, "None")<br>    node_size                           = optional(string, "Small")<br>    node_count                          = optional(number, null)<br>    cache_size                          = optional(number, null)<br>    compute_isolation_enabled           = optional(bool, false)<br>    dynamic_executor_allocation_enabled = optional(bool, false)<br>    min_executors                       = optional(number, null)<br>    max_executors                       = optional(number, null)<br>    session_level_packages_enabled      = optional(bool, false)<br>    spark_log_folder                    = optional(string, "/logs")<br>    spark_events_folder                 = optional(string, "/events")<br>    spark_version                       = optional(string, "3.4")<br>    autoscale_max_node_count            = optional(number, null)<br>    autoscale_min_node_count            = optional(number, null)<br>    autopause_delay_in_minutes          = optional(number, null)<br>    requirements_content                = optional(string, null)<br>    requirements_filename               = optional(string, "requirements.txt")<br>    spark_config_content                = optional(string, null)<br>    spark_config_filename               = optional(string, "config.txt")<br>  }))</pre> | `{}` | no |
 | <a name="input_storage_account_id"></a> [storage\_account\_id](#input\_storage\_account\_id) | Storage Account ID used by Synapse Workspace. Necessary if `add_storage_contributor_role` is true. | `string` | `false` | no |
 | <a name="input_storage_data_lake_gen2_filesystem_id"></a> [storage\_data\_lake\_gen2\_filesystem\_id](#input\_storage\_data\_lake\_gen2\_filesystem\_id) | Specifies the ID of storage data lake gen2 filesystem resource. Changing this forces a new resource to be created. | `string` | n/a | yes |
 | <a name="input_synapse_role_assignments"></a> [synapse\_role\_assignments](#input\_synapse\_role\_assignments) | Manages a Synapse Role Assignment. | <pre>list(object({<br>    role_name      = string<br>    principal_id   = string<br>    principal_type = optional(string, null)<br>  }))</pre> | `[]` | no |
@@ -109,6 +118,7 @@ No modules.
 | <a name="output_endpoints"></a> [endpoints](#output\_endpoints) | A list of Connectivity endpoints for this Synapse Workspace. |
 | <a name="output_id"></a> [id](#output\_id) | The ID of the synapse Workspace. |
 | <a name="output_identity"></a> [identity](#output\_identity) | The Principal ID and Tenant ID for the Service Principal associated with the Managed Service Identity of this Synapse Workspace. |
+| <a name="output_spark_pools_id"></a> [spark\_pools\_id](#output\_spark\_pools\_id) | The Spark Pools ID. |
 | <a name="output_sql_administrator_password"></a> [sql\_administrator\_password](#output\_sql\_administrator\_password) | SQL administrator password. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
