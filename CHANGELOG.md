@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0](https://github.com/fdmsantos/terraform-azurerm-synapse/compare/v1.1.1...v1.2.0) (2024-05-08)
+
+
+### Features
+
+* Add Support for Spark Pools ([6c9d7ef](https://github.com/fdmsantos/terraform-azurerm-synapse/commit/6c9d7ef35721f3741297c74299aa46be5efc5db5))
+
 ### [1.1.1](https://github.com/fdmsantos/terraform-azurerm-synapse/compare/v1.1.0...v1.1.1) (2024-05-07)
 
 
