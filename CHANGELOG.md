@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0](https://github.com/fdmsantos/terraform-azurerm-synapse/compare/v1.2.0...v1.3.0) (2024-05-13)
+
+
+### Features
+
+* Add Support for Azure and Self Hosted Integration Runtimes ([8be6e87](https://github.com/fdmsantos/terraform-azurerm-synapse/commit/8be6e87c417aee719957aa4887519d43e39d55b0))
+* Add Support for Linked Services ([d69e75c](https://github.com/fdmsantos/terraform-azurerm-synapse/commit/d69e75c7d1b9288e4b0628e87a8bb51d5f0a97a0))
+
 ## [1.2.0](https://github.com/fdmsantos/terraform-azurerm-synapse/compare/v1.1.1...v1.2.0) (2024-05-08)
 
 
