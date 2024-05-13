@@ -70,6 +70,17 @@ module "synapse" {
   #     principal_id = data.azurerm_client_config.current.object_id
   #   }]
 
+  linked_services = {
+    example = {
+      type                 = "AzureBlobStorage"
+      type_properties_json = <<JSON
+{
+  "connectionString": "${module.storage_account.storage_account_properties.primary_connection_string}"
+}
+JSON
+    }
+  }
+
   spark_pools = {
     testpool : {
       node_size_family : "MemoryOptimized"

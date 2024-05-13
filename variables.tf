@@ -132,7 +132,7 @@ variable "synapse_role_assignments" {
 
 ######### Spark Pools #########
 variable "spark_pools" {
-  description = "Manages a Synapse Spark Poold."
+  description = "Manages a Synapse Spark Pools."
   type = map(object({
     node_size_family                    = optional(string, "None")
     node_size                           = optional(string, "Small")
@@ -153,6 +153,22 @@ variable "spark_pools" {
     requirements_filename               = optional(string, "requirements.txt")
     spark_config_content                = optional(string, null)
     spark_config_filename               = optional(string, "config.txt")
+  }))
+  default = {}
+}
+
+######### Linked Services #########
+variable "linked_services" {
+  description = "Manages a Synapse Linked Services."
+  type = map(object({
+    type                           = string
+    type_properties_json           = string
+    additional_properties          = optional(map(string), {})
+    annotations                    = optional(list(string), [])
+    description                    = optional(string, null)
+    parameters                     = optional(map(string), {})
+    integration_runtime_name       = optional(string, null)
+    integration_runtime_parameters = optional(map(string), {})
   }))
   default = {}
 }

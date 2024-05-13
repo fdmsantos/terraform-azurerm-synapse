@@ -26,3 +26,11 @@ output "spark_pools_id" {
     for k, v in azurerm_synapse_spark_pool.this : k => v.id
   }
 }
+
+########## Linked Services ##########
+output "linked_services_id" {
+  description = "The Linked Services ID."
+  value = {
+    for k, v in azurerm_synapse_linked_service.this : k => v.id
+  }
+}
