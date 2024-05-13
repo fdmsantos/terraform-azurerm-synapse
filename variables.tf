@@ -172,3 +172,24 @@ variable "linked_services" {
   }))
   default = {}
 }
+
+######### Integration Runtimes #########
+variable "azure_integration_runtimes" {
+  description = "Manages a Azure Synapse Azure Integration Runtimes."
+  type = map(object({
+    location         = optional(string, "AutoResolve")
+    compute_type     = optional(string, "General")
+    core_count       = optional(number, 8)
+    description      = optional(string, null)
+    time_to_live_min = optional(number, 0)
+  }))
+  default = {}
+}
+
+variable "self_hosted_integration_runtimes" {
+  description = "Manages a Self Hosted Synapse Azure Integration Runtimes."
+  type = map(object({
+    description = optional(string, null)
+  }))
+  default = {}
+}

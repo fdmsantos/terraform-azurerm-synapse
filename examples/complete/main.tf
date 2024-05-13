@@ -100,4 +100,20 @@ spark.shuffle.spill                true
 EOF
     }
   }
+  azure_integration_runtimes = {
+    azure : {
+      location : "AutoResolve"
+      compute_type : "General"
+      core_count : 8
+      description : "Azure Integration Runtime to Test"
+      time_to_live_min : 0
+    }
+  }
+
+  self_hosted_integration_runtimes = {
+    self-hosted : {
+      description : "Self Hosted Integration Runtime to Test"
+    }
+  }
+
 }

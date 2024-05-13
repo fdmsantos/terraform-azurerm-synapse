@@ -32,6 +32,8 @@ Dynamic Terraform Module to create Azure Synapse Workspace and all Related Resou
 - Synapse Firewall Rules
 - Spark Pools
 - Linked Services
+- Azure Integration Runtime
+- Self Hosted Integration Runtime
 
 ## How to Use
 
@@ -83,6 +85,8 @@ No modules.
 | [azurerm_synapse_firewall_rule.azureservices](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_firewall_rule) | resource |
 | [azurerm_synapse_firewall_rule.client_ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_firewall_rule) | resource |
 | [azurerm_synapse_firewall_rule.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_firewall_rule) | resource |
+| [azurerm_synapse_integration_runtime_azure.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_integration_runtime_azure) | resource |
+| [azurerm_synapse_integration_runtime_self_hosted.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_integration_runtime_self_hosted) | resource |
 | [azurerm_synapse_linked_service.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_linked_service) | resource |
 | [azurerm_synapse_role_assignment.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_role_assignment) | resource |
 | [azurerm_synapse_spark_pool.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_spark_pool) | resource |
@@ -100,6 +104,7 @@ No modules.
 | <a name="input_allow_own_ip"></a> [allow\_own\_ip](#input\_allow\_own\_ip) | If true, create firewall rule to allow client IP to Synapse Workspace. | `bool` | `false` | no |
 | <a name="input_auth_sql_administrator"></a> [auth\_sql\_administrator](#input\_auth\_sql\_administrator) | Specifies The login name of the SQL administrator. Changing this forces a new resource to be created. | `string` | `null` | no |
 | <a name="input_auth_sql_administrator_password"></a> [auth\_sql\_administrator\_password](#input\_auth\_sql\_administrator\_password) | The Password associated with the sql\_administrator\_login for the SQL administrator. | `string` | `null` | no |
+| <a name="input_azure_integration_runtimes"></a> [azure\_integration\_runtimes](#input\_azure\_integration\_runtimes) | Manages a Azure Synapse Azure Integration Runtimes. | <pre>map(object({<br>    location         = optional(string, "AutoResolve")<br>    compute_type     = optional(string, "General")<br>    core_count       = optional(number, 8)<br>    description      = optional(string, null)<br>    time_to_live_min = optional(number, 0)<br>  }))</pre> | `{}` | no |
 | <a name="input_azuread_authentication_only"></a> [azuread\_authentication\_only](#input\_azuread\_authentication\_only) | Azure Active Directory Authentication the only way to authenticate with resources inside this synapse Workspace. | `bool` | `false` | no |
 | <a name="input_firewall_rules"></a> [firewall\_rules](#input\_firewall\_rules) | Allows you to Manages a Synapse Firewall Rules. | <pre>list(object({<br>    name             = string<br>    start_ip_address = string<br>    end_ip_address   = string<br>  }))</pre> | `[]` | no |
 | <a name="input_github"></a> [github](#input\_github) | Integrate Synapse Workspace with Github. | <pre>object({<br>    account_name    = string<br>    repository_name = string<br>    branch_name     = string<br>    root_folder     = string<br>    last_commit_id  = optional(string)<br>    git_url         = optional(string)<br>  })</pre> | `null` | no |
@@ -109,6 +114,7 @@ No modules.
 | <a name="input_location"></a> [location](#input\_location) | Specifies the Azure Region where the synapse Workspace should exist. Changing this forces a new resource to be created. | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | Specifies the name which should be used for this synapse Workspace. Changing this forces a new resource to be created. | `string` | n/a | yes |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Specifies the name of the Resource Group where the synapse Workspace should exist. Changing this forces a new resource to be created. | `string` | n/a | yes |
+| <a name="input_self_hosted_integration_runtimes"></a> [self\_hosted\_integration\_runtimes](#input\_self\_hosted\_integration\_runtimes) | Manages a Self Hosted Synapse Azure Integration Runtimes. | <pre>map(object({<br>    description = optional(string, null)<br>  }))</pre> | `{}` | no |
 | <a name="input_spark_pools"></a> [spark\_pools](#input\_spark\_pools) | Manages a Synapse Spark Pools. | <pre>map(object({<br>    node_size_family                    = optional(string, "None")<br>    node_size                           = optional(string, "Small")<br>    node_count                          = optional(number, null)<br>    cache_size                          = optional(number, null)<br>    compute_isolation_enabled           = optional(bool, false)<br>    dynamic_executor_allocation_enabled = optional(bool, false)<br>    min_executors                       = optional(number, null)<br>    max_executors                       = optional(number, null)<br>    session_level_packages_enabled      = optional(bool, false)<br>    spark_log_folder                    = optional(string, "/logs")<br>    spark_events_folder                 = optional(string, "/events")<br>    spark_version                       = optional(string, "3.4")<br>    autoscale_max_node_count            = optional(number, null)<br>    autoscale_min_node_count            = optional(number, null)<br>    autopause_delay_in_minutes          = optional(number, null)<br>    requirements_content                = optional(string, null)<br>    requirements_filename               = optional(string, "requirements.txt")<br>    spark_config_content                = optional(string, null)<br>    spark_config_filename               = optional(string, "config.txt")<br>  }))</pre> | `{}` | no |
 | <a name="input_storage_account_id"></a> [storage\_account\_id](#input\_storage\_account\_id) | Storage Account ID used by Synapse Workspace. Necessary if `add_storage_contributor_role` is true. | `string` | `false` | no |
 | <a name="input_storage_data_lake_gen2_filesystem_id"></a> [storage\_data\_lake\_gen2\_filesystem\_id](#input\_storage\_data\_lake\_gen2\_filesystem\_id) | Specifies the ID of storage data lake gen2 filesystem resource. Changing this forces a new resource to be created. | `string` | n/a | yes |
@@ -119,10 +125,12 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_azure_integration_runtimes_id"></a> [azure\_integration\_runtimes\_id](#output\_azure\_integration\_runtimes\_id) | The Azure Integration Runtimes ID. |
 | <a name="output_endpoints"></a> [endpoints](#output\_endpoints) | A list of Connectivity endpoints for this Synapse Workspace. |
 | <a name="output_id"></a> [id](#output\_id) | The ID of the synapse Workspace. |
 | <a name="output_identity"></a> [identity](#output\_identity) | The Principal ID and Tenant ID for the Service Principal associated with the Managed Service Identity of this Synapse Workspace. |
 | <a name="output_linked_services_id"></a> [linked\_services\_id](#output\_linked\_services\_id) | The Linked Services ID. |
+| <a name="output_self_hosted_integration_runtimes_id"></a> [self\_hosted\_integration\_runtimes\_id](#output\_self\_hosted\_integration\_runtimes\_id) | The Self Hosted Integration Runtimes ID. |
 | <a name="output_spark_pools_id"></a> [spark\_pools\_id](#output\_spark\_pools\_id) | The Spark Pools ID. |
 | <a name="output_sql_administrator_password"></a> [sql\_administrator\_password](#output\_sql\_administrator\_password) | SQL administrator password. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

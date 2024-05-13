@@ -34,3 +34,18 @@ output "linked_services_id" {
     for k, v in azurerm_synapse_linked_service.this : k => v.id
   }
 }
+
+######### Integrated Runtimes #########
+output "azure_integration_runtimes_id" {
+  description = "The Azure Integration Runtimes ID."
+  value = {
+    for k, v in azurerm_synapse_integration_runtime_azure.this : k => v.id
+  }
+}
+
+output "self_hosted_integration_runtimes_id" {
+  description = "The Self Hosted Integration Runtimes ID."
+  value = {
+    for k, v in azurerm_synapse_integration_runtime_self_hosted.this : k => v.id
+  }
+}

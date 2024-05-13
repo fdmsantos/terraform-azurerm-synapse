@@ -156,4 +156,29 @@ resource "azurerm_synapse_spark_pool" "this" {
   }
 
   tags = var.tags
+
+  depends_on = [
+    azurerm_synapse_firewall_rule.this,
+    azurerm_synapse_firewall_rule.azureservices,
+    azurerm_synapse_firewall_rule.client_ip,
+  ]
+}
+
+############################### Integration Runtimes ###############################
+resource "azurerm_synapse_integration_runtime_azure" "this" {
+  for_each             = var.azure_integration_runtimes
+  name                 = each.key
+  synapse_workspace_id = azurerm_synapse_workspace.this.id
+  description          = each.value["description"]
+  location             = each.value["location"]
+  compute_type         = each.value["compute_type"]
+  core_count           = each.value["core_count"]
+  time_to_live_min     = each.value["time_to_live_min"]
+}
+
+resource "azurerm_synapse_integration_runtime_self_hosted" "this" {
+  for_each             = var.self_hosted_integration_runtimes
+  name                 = each.key
+  synapse_workspace_id = azurerm_synapse_workspace.this.id
+  description          = each.value["description"]
 }
