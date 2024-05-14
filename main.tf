@@ -43,6 +43,10 @@ resource "azurerm_synapse_workspace" "this" {
     }
   }
 
+  lifecycle {
+    ignore_changes = [github_repo[0].last_commit_id]
+  }
+
   tags = var.tags
 }
 
