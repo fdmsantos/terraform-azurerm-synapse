@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.3.1](https://github.com/fdmsantos/terraform-azurerm-synapse/compare/v1.3.0...v1.3.1) (2024-05-14)
+
+
+### Bug Fixes
+
+* Ignore Github Repo Last commit id changes to not cause perpetual diff ([f13ff8b](https://github.com/fdmsantos/terraform-azurerm-synapse/commit/f13ff8bed8923f9c007c821df3c72fd86c5e53d3))
+
 ## [1.3.0](https://github.com/fdmsantos/terraform-azurerm-synapse/compare/v1.2.0...v1.3.0) (2024-05-13)
 
 
