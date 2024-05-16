@@ -13,6 +13,7 @@ resource "azurerm_synapse_workspace" "this" {
   sql_administrator_login              = !var.azuread_authentication_only ? coalesce(var.auth_sql_administrator, "sqladminuser") : null
   sql_administrator_login_password     = !var.azuread_authentication_only ? coalesce(var.auth_sql_administrator_password, random_password.sql_password[0].result) : null
   azuread_authentication_only          = var.azuread_authentication_only
+  purview_id                           = var.purview_id
 
   dynamic "aad_admin" {
     for_each = var.aad_admin != null ? [var.aad_admin] : []

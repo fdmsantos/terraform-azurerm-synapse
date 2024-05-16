@@ -53,6 +53,12 @@ variable "aad_admin" {
   default = null
 }
 
+variable "purview_id" {
+  description = "The ID of purview account."
+  type        = string
+  default     = null
+}
+
 ######### Identity #########
 variable "identity_type" {
   description = "Specifies the type of Managed Service Identity that should be associated with this Logic App."
