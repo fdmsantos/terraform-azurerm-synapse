@@ -1,4 +1,4 @@
-#data "azurerm_client_config" "current" {}
+data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "this" {
   name     = "RG-${var.name}"
@@ -65,10 +65,16 @@ module "synapse" {
     branch_name     = "main"
     root_folder     = "/synapse"
   }
-  #   synapse_role_assignments = [{
-  #     role_name    = "Synapse Administrator"
-  #     principal_id = data.azurerm_client_config.current.object_id
-  #   }]
+
+  synapse_role_assignments = [{
+    role_name    = "Synapse Administrator"
+    principal_id = data.azurerm_client_config.current.object_id
+  }]
+
+  azure_role_assignments = [{
+    role_name    = "Owner"
+    principal_id = data.azurerm_client_config.current.object_id
+  }]
 
   linked_services = {
     example = {

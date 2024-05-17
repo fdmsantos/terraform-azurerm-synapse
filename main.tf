@@ -59,12 +59,19 @@ resource "azurerm_role_assignment" "storage_blob_contributor" {
   principal_id         = azurerm_synapse_workspace.this.identity[count.index].principal_id
 }
 
+resource "azurerm_role_assignment" "this" {
+  count                = length(var.azure_role_assignments)
+  scope                = azurerm_synapse_workspace.this.id
+  role_definition_name = var.azure_role_assignments[count.index].role_name
+  principal_id         = var.azure_role_assignments[count.index].principal_id
+}
+
 resource "azurerm_synapse_role_assignment" "this" {
   count                = length(var.synapse_role_assignments)
   synapse_workspace_id = azurerm_synapse_workspace.this.id
   role_name            = var.synapse_role_assignments[count.index].role_name
   principal_id         = var.synapse_role_assignments[count.index].principal_id
-  principal_type       = var.synapse_role_assignments[count.index].principal_type
+  principal_type       = lookup(var.synapse_role_assignments[count.index], "principal_type", null)
 }
 ############################### Firewall Rules ###############################
 resource "azurerm_synapse_firewall_rule" "this" {

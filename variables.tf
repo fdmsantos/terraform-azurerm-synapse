@@ -136,6 +136,15 @@ variable "synapse_role_assignments" {
   default = []
 }
 
+variable "azure_role_assignments" {
+  description = "Manages a Azure Role Assignment to Synapse Workspace."
+  type = list(object({
+    role_name    = string
+    principal_id = string
+  }))
+  default = []
+}
+
 ######### Spark Pools #########
 variable "spark_pools" {
   description = "Manages a Synapse Spark Pools."

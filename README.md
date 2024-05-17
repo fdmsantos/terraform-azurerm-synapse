@@ -29,6 +29,7 @@ Dynamic Terraform Module to create Azure Synapse Workspace and all Related Resou
 
 - Synapse Workspace
 - Synapse Role Assignments
+- Azure Role Assignments
 - Synapse Firewall Rules
 - Spark Pools
 - Linked Services
@@ -83,6 +84,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [azurerm_role_assignment.storage_blob_contributor](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
+| [azurerm_role_assignment.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
 | [azurerm_synapse_firewall_rule.azureservices](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_firewall_rule) | resource |
 | [azurerm_synapse_firewall_rule.client_ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_firewall_rule) | resource |
 | [azurerm_synapse_firewall_rule.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_firewall_rule) | resource |
@@ -106,6 +108,7 @@ No modules.
 | <a name="input_auth_sql_administrator"></a> [auth\_sql\_administrator](#input\_auth\_sql\_administrator) | Specifies The login name of the SQL administrator. Changing this forces a new resource to be created. | `string` | `null` | no |
 | <a name="input_auth_sql_administrator_password"></a> [auth\_sql\_administrator\_password](#input\_auth\_sql\_administrator\_password) | The Password associated with the sql\_administrator\_login for the SQL administrator. | `string` | `null` | no |
 | <a name="input_azure_integration_runtimes"></a> [azure\_integration\_runtimes](#input\_azure\_integration\_runtimes) | Manages a Azure Synapse Azure Integration Runtimes. | <pre>map(object({<br>    location         = optional(string, "AutoResolve")<br>    compute_type     = optional(string, "General")<br>    core_count       = optional(number, 8)<br>    description      = optional(string, null)<br>    time_to_live_min = optional(number, 0)<br>  }))</pre> | `{}` | no |
+| <a name="input_azure_role_assignments"></a> [azure\_role\_assignments](#input\_azure\_role\_assignments) | Manages a Azure Role Assignment to Synapse Workspace. | <pre>list(object({<br>    role_name    = string<br>    principal_id = string<br>  }))</pre> | `[]` | no |
 | <a name="input_azuread_authentication_only"></a> [azuread\_authentication\_only](#input\_azuread\_authentication\_only) | Azure Active Directory Authentication the only way to authenticate with resources inside this synapse Workspace. | `bool` | `false` | no |
 | <a name="input_firewall_rules"></a> [firewall\_rules](#input\_firewall\_rules) | Allows you to Manages a Synapse Firewall Rules. | <pre>list(object({<br>    name             = string<br>    start_ip_address = string<br>    end_ip_address   = string<br>  }))</pre> | `[]` | no |
 | <a name="input_github"></a> [github](#input\_github) | Integrate Synapse Workspace with Github. | <pre>object({<br>    account_name    = string<br>    repository_name = string<br>    branch_name     = string<br>    root_folder     = string<br>    last_commit_id  = optional(string)<br>    git_url         = optional(string)<br>  })</pre> | `null` | no |
