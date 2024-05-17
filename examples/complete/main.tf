@@ -106,6 +106,11 @@ spark.shuffle.spill                true
 EOF
     }
   }
+  sql_pools = {
+    testpool : {
+      sku_name : "DW100c"
+    }
+  }
   azure_integration_runtimes = {
     azure : {
       location : "AutoResolve"

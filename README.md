@@ -32,6 +32,7 @@ Dynamic Terraform Module to create Azure Synapse Workspace and all Related Resou
 - Azure Role Assignments
 - Synapse Firewall Rules
 - Spark Pools
+- SQL Pools
 - Linked Services
 - Azure Integration Runtime
 - Self Hosted Integration Runtime
@@ -93,6 +94,7 @@ No modules.
 | [azurerm_synapse_linked_service.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_linked_service) | resource |
 | [azurerm_synapse_role_assignment.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_role_assignment) | resource |
 | [azurerm_synapse_spark_pool.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_spark_pool) | resource |
+| [azurerm_synapse_sql_pool.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_sql_pool) | resource |
 | [azurerm_synapse_workspace.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/synapse_workspace) | resource |
 | [random_password.sql_password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
 | [http_http.client_ip](https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http) | data source |
@@ -121,6 +123,7 @@ No modules.
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Specifies the name of the Resource Group where the synapse Workspace should exist. Changing this forces a new resource to be created. | `string` | n/a | yes |
 | <a name="input_self_hosted_integration_runtimes"></a> [self\_hosted\_integration\_runtimes](#input\_self\_hosted\_integration\_runtimes) | Manages a Self Hosted Synapse Azure Integration Runtimes. | <pre>map(object({<br>    description = optional(string, null)<br>  }))</pre> | `{}` | no |
 | <a name="input_spark_pools"></a> [spark\_pools](#input\_spark\_pools) | Manages a Synapse Spark Pools. | <pre>map(object({<br>    node_size_family                    = optional(string, "None")<br>    node_size                           = optional(string, "Small")<br>    node_count                          = optional(number, null)<br>    cache_size                          = optional(number, null)<br>    compute_isolation_enabled           = optional(bool, false)<br>    dynamic_executor_allocation_enabled = optional(bool, false)<br>    min_executors                       = optional(number, null)<br>    max_executors                       = optional(number, null)<br>    session_level_packages_enabled      = optional(bool, false)<br>    spark_log_folder                    = optional(string, "/logs")<br>    spark_events_folder                 = optional(string, "/events")<br>    spark_version                       = optional(string, "3.4")<br>    autoscale_max_node_count            = optional(number, null)<br>    autoscale_min_node_count            = optional(number, null)<br>    autopause_delay_in_minutes          = optional(number, null)<br>    requirements_content                = optional(string, null)<br>    requirements_filename               = optional(string, "requirements.txt")<br>    spark_config_content                = optional(string, null)<br>    spark_config_filename               = optional(string, "config.txt")<br>  }))</pre> | `{}` | no |
+| <a name="input_sql_pools"></a> [sql\_pools](#input\_sql\_pools) | Manages a Synapse SQL Pools. | <pre>map(object({<br>    sku_name                   = string<br>    create_mode                = optional(string, "Default")<br>    collation                  = optional(string, "SQL_LATIN1_GENERAL_CP1_CI_AS")<br>    data_encrypted             = optional(bool, false)<br>    recovery_database_id       = optional(string, null)<br>    geo_backup_policy_enabled  = optional(bool, true)<br>    storage_account_type       = optional(string, "GRS")<br>    restore_source_database_id = optional(string, null)<br>    restore_point_in_time      = optional(string, false)<br><br>  }))</pre> | `{}` | no |
 | <a name="input_storage_account_id"></a> [storage\_account\_id](#input\_storage\_account\_id) | Storage Account ID used by Synapse Workspace. Necessary if `add_storage_contributor_role` is true. | `string` | `false` | no |
 | <a name="input_storage_data_lake_gen2_filesystem_id"></a> [storage\_data\_lake\_gen2\_filesystem\_id](#input\_storage\_data\_lake\_gen2\_filesystem\_id) | Specifies the ID of storage data lake gen2 filesystem resource. Changing this forces a new resource to be created. | `string` | n/a | yes |
 | <a name="input_synapse_role_assignments"></a> [synapse\_role\_assignments](#input\_synapse\_role\_assignments) | Manages a Synapse Role Assignment. | <pre>list(object({<br>    role_name      = string<br>    principal_id   = string<br>    principal_type = optional(string, null)<br>  }))</pre> | `[]` | no |
@@ -138,6 +141,7 @@ No modules.
 | <a name="output_self_hosted_integration_runtimes_id"></a> [self\_hosted\_integration\_runtimes\_id](#output\_self\_hosted\_integration\_runtimes\_id) | The Self Hosted Integration Runtimes ID. |
 | <a name="output_spark_pools_id"></a> [spark\_pools\_id](#output\_spark\_pools\_id) | The Spark Pools ID. |
 | <a name="output_sql_administrator_password"></a> [sql\_administrator\_password](#output\_sql\_administrator\_password) | SQL administrator password. |
+| <a name="output_sql_pools_id"></a> [sql\_pools\_id](#output\_sql\_pools\_id) | The SQL Pools ID. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## License

@@ -22,3 +22,8 @@ output "self_hosted_integration_runtime_id" {
   description = "Self Hosted Integrations Runtime ID"
   value       = module.synapse.self_hosted_integration_runtimes_id
 }
+
+output "sql_pools_id" {
+  description = "SQL Pools ID"
+  value       = module.synapse.sql_pools_id
+}

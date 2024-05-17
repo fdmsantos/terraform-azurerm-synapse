@@ -49,3 +49,11 @@ output "self_hosted_integration_runtimes_id" {
     for k, v in azurerm_synapse_integration_runtime_self_hosted.this : k => v.id
   }
 }
+
+########## SQL Pools ##########
+output "sql_pools_id" {
+  description = "The SQL Pools ID."
+  value = {
+    for k, v in azurerm_synapse_sql_pool.this : k => v.id
+  }
+}

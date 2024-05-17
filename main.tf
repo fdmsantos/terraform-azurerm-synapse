@@ -194,3 +194,25 @@ resource "azurerm_synapse_integration_runtime_self_hosted" "this" {
   synapse_workspace_id = azurerm_synapse_workspace.this.id
   description          = each.value["description"]
 }
+
+############################### SQL Pools ###############################
+resource "azurerm_synapse_sql_pool" "this" {
+  for_each                  = var.sql_pools
+  name                      = each.key
+  synapse_workspace_id      = azurerm_synapse_workspace.this.id
+  sku_name                  = each.value["sku_name"]
+  create_mode               = each.value["create_mode"]
+  collation                 = each.value["collation"]
+  data_encrypted            = each.value["data_encrypted"]
+  recovery_database_id      = each.value["recovery_database_id"]
+  geo_backup_policy_enabled = each.value["geo_backup_policy_enabled"]
+  storage_account_type      = each.value["storage_account_type"]
+  dynamic "restore" {
+    for_each = each.value["restore_source_database_id"] != null ? [1] : []
+    content {
+      source_database_id = each.value["restore_source_database_id"]
+      point_in_time      = each.value["restore_point_in_time"]
+    }
+  }
+  tags = var.tags
+}

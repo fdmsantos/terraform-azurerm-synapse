@@ -208,3 +208,21 @@ variable "self_hosted_integration_runtimes" {
   }))
   default = {}
 }
+
+######### SQL Pools #########
+variable "sql_pools" {
+  description = "Manages a Synapse SQL Pools."
+  type = map(object({
+    sku_name                   = string
+    create_mode                = optional(string, "Default")
+    collation                  = optional(string, "SQL_LATIN1_GENERAL_CP1_CI_AS")
+    data_encrypted             = optional(bool, false)
+    recovery_database_id       = optional(string, null)
+    geo_backup_policy_enabled  = optional(bool, true)
+    storage_account_type       = optional(string, "GRS")
+    restore_source_database_id = optional(string, null)
+    restore_point_in_time      = optional(string, false)
+
+  }))
+  default = {}
+}
