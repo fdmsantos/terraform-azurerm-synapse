@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0](https://github.com/fdmsantos/terraform-azurerm-synapse/compare/v1.3.1...v1.4.0) (2024-05-17)
+
+
+### Features
+
+* Add Azure Roles Assignment ([b254f62](https://github.com/fdmsantos/terraform-azurerm-synapse/commit/b254f62c693b88560242afc4dda4caa1f0fd8162))
+* Add integration with Microsoft Purview ([c72f77c](https://github.com/fdmsantos/terraform-azurerm-synapse/commit/c72f77caa0718b812f209bbf428acfe537cd462f))
+* Add SQL Pools ([6b2d385](https://github.com/fdmsantos/terraform-azurerm-synapse/commit/6b2d385b68e86044c93c6a2866df524fe6078307))
+
 ### [1.3.1](https://github.com/fdmsantos/terraform-azurerm-synapse/compare/v1.3.0...v1.3.1) (2024-05-14)
 
 
