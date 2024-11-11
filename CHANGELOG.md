@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0](https://github.com/fdmsantos/terraform-azurerm-synapse/compare/v1.4.0...v2.0.0) (2024-11-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* Bump to Azure Provider version 4.0
+
+### Features
+
+* Bump to Azure Provider version 4.0 ([1f2c1e2](https://github.com/fdmsantos/terraform-azurerm-synapse/commit/1f2c1e2e3519d4a574f7e47e91e729bcead07220))
+
 ## [1.4.0](https://github.com/fdmsantos/terraform-azurerm-synapse/compare/v1.3.1...v1.4.0) (2024-05-17)
 
 
