@@ -207,3 +207,5 @@ resource "azurerm_synapse_sql_pool" "this" {
   }
   tags = var.tags
 }
+
+
