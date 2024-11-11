@@ -15,14 +15,14 @@ resource "azurerm_synapse_workspace" "this" {
   azuread_authentication_only          = var.azuread_authentication_only
   purview_id                           = var.purview_id
 
-  dynamic "aad_admin" {
-    for_each = var.aad_admin != null ? [var.aad_admin] : []
-    content {
-      login     = aad_admin.value.login
-      object_id = aad_admin.value.object_id
-      tenant_id = aad_admin.value.tenant_id
-    }
-  }
+  # dynamic "aad_admin" {
+  #   for_each = var.aad_admin != null ? [var.aad_admin] : []
+  #   content {
+  #     login     = aad_admin.value.login
+  #     object_id = aad_admin.value.object_id
+  #     tenant_id = aad_admin.value.tenant_id
+  #   }
+  # }
 
   dynamic "github_repo" {
     for_each = var.github != null ? [var.github] : []
